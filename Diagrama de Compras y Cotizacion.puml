@@ -1,0 +1,87 @@
+Class Bien{
+  - String codigo;
+  - String nombre;
+  - String tipo;
+  - Int cantidad;
+  - List<String> historialUbicaciones;
+  - List<String>historialDeMovimiento;
+  - Boolean seguridadActiva;
+}
+
+Class CentroDeCosto{
+  - String nombre;
+  - String codigo;
+}
+
+Class Trabajador {
+  - String nombre;
+  - String identificacion;
+
+}
+
+Class Solicitante {
+  - String nombre;
+  - String id;
+}
+
+Class ItemSolicitud {
+  - Int cantidad;
+  - String unidad;
+  - Double precioUnitario;
+
+}
+
+Class SolicitudDeCompra{
+  - Int id;
+  - String fecha;
+  - List <ItemSolicitud> items;
+  - Boolean aprobacionDirector;
+}
+
+Class JefeDeArea {
+   - String nombre;
+   - String identificacion;
+
+}
+
+Class DirectorFinanciero {
+    - String nombre;
+    - String id;
+}
+
+Class EntradaAlmacen {
+   - String fecha;
+   - String numeroDeEntrada;
+   - String proovedor;
+   - List <ItemSolicitud> itemsRecibidos;
+   - Double valorTotal;
+}
+
+Class SalidaAlmacen {
+   - String fechaEntregada;
+   - String fechaSalida;
+   - String idSalida;
+   - Trabajador empleadoResponsable;
+   - List<ItemSolicitud> itemsEntregados;
+}
+
+Class Almacen {
+  - List<EntradaAlmacen> entrada;
+  - List<SalidaAlmacen> salida;
+  - List<Bien> inventarioDelAlmacen;
+}
+
+Class Inventario {
+  - Bien bien;
+}
+
+Solicitante"1"--> SolicitudDeCompra: puede solicitar
+Solicitante"2"--> Trabajador: tambien puede
+SolicitudDeCompra"3"--> ItemSolicitud: tiene
+SolicitudDeCompra"4"--> JefeDeArea: es aprobada
+DirectorFinanciero"5"--> Bien: aprueba su
+JefeDeArea"6"--> CentroDeCosto: pertenece a un area
+DirectorFinanciero"7"--> CentroDeCosto: supervisa
+Almacen"8"--> EntradaAlmacen: registra la entrada de un bien
+Almacen"9"-->SalidaAlmacen: registra la salida
+Inventario"10"--> Bien: llevar el control de los bienes
